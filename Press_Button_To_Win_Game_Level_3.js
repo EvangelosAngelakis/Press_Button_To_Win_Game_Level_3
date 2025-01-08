@@ -40,19 +40,23 @@ document.addEventListener('DOMContentLoaded',function(){
     const button = document .getElementById('button8');
     let timer;
     
-    button.addEventListener('mousedown', function() {
+    function startTimer() {
         timer = setTimeout(function() {
             activateFunction();
         }, 2000);
-    });
+    }
     
-    button.addEventListener('mouseup', function(){
+    function clearTimer() {
         clearTimeout(timer);
-    });
-    
-    button.addEventListener('mouseleave', function(){
-        clearTimeout(timer);
-    });
+    }
+
+    button.addEventListener('mousedown', startTimer);
+    button.addEventListener('mouseup', clearTimer);
+    button.addEventListener('mouseleave', clearTimer);
+
+    button.addEventListener('touchstart', startTimer);
+    button.addEventListener('touchend', clearTimer);
+    button.addEventListener('touchcancel', clearTimer);
     
     function activateFunction() {
         stopExecution = true; 
